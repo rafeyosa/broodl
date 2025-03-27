@@ -1,7 +1,7 @@
 import { Fugaz_One } from "next/font/google";
 import React from "react";
 
-const fugasOne = Fugaz_One({ subsets: ["latin"], weight: ["400"] });
+const fugaz = Fugaz_One({ subsets: ["latin"], weight: ["400"] });
 
 export default function Button(props) {
   const { text, dark, full } = props;
@@ -15,7 +15,7 @@ export default function Button(props) {
     >
       <p
         className={
-          fugasOne.className + " px-7 sm:px-10 whitespace-nowrap py-2 sm:py-3"
+          fugaz.className + " px-7 sm:px-10 whitespace-nowrap py-2 sm:py-3"
         }
       >
         {text}

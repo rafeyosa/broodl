@@ -2,7 +2,7 @@ import { Fugaz_One } from "next/font/google";
 import React from "react";
 import Calendar from "./Calendar";
 
-const fugasOne = Fugaz_One({ subsets: ["latin"], weight: ["400"] });
+const fugaz = Fugaz_One({ subsets: ["latin"], weight: ["400"] });
 
 export default function Dashboard() {
   const statuses = {
@@ -28,7 +28,7 @@ export default function Dashboard() {
               <p className="font-medium uppercase text-xs sm:text-sm truncate">
                 {status.replaceAll("_", " ")}
               </p>
-              <p className={fugasOne.className + " text-base sm:text-lg"}>
+              <p className={fugaz.className + " text-base sm:text-lg"}>
                 {statuses[status]}
               </p>
             </div>
@@ -37,7 +37,7 @@ export default function Dashboard() {
       </div>
       <h4
         className={
-          fugasOne.className + " text-5xl sm:text-6xl md:7xl text-center"
+          fugaz.className + " text-5xl sm:text-6xl md:7xl text-center"
         }
       >
         How do you <span className="textGradient">feel</span> today?
@@ -53,7 +53,7 @@ export default function Dashboard() {
               }
             >
               <p className="text-4xl sm:text-5xl md:text-6xl">{moods[mood]}</p>
-              <p className={fugasOne.className + " text-indigo-500 text-xs sm:text-sm md:text-base"}>{mood}</p>
+              <p className={fugaz.className + " text-indigo-500 text-xs sm:text-sm md:text-base"}>{mood}</p>
             </button>
           );
         })}
@@ -69,7 +69,7 @@ export default function Dashboard() {
               }
             >
               <p className="text-4xl sm:text-5xl md:text-6xl">{moods[mood]}</p>
-              <p className={fugasOne.className + " text-indigo-500 text-xs sm:text-sm md:text-base"}>{mood}</p>
+              <p className={fugaz.className + " text-indigo-500 text-xs sm:text-sm md:text-base"}>{mood}</p>
             </button>
           );
         })}

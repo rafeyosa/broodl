@@ -3,14 +3,14 @@ import React from "react";
 import Button from "./Button";
 import Calendar from "./Calendar";
 
-const fugasOne = Fugaz_One({ subsets: ["latin"], weight: ["400"] });
+const fugaz = Fugaz_One({ subsets: ["latin"], weight: ["400"] });
 
 export default function Hero() {
   return (
     <div className="py-4 md:py-10 flex flex-col gap-4 sm:gap-8">
       <h1
         className={
-          fugasOne.className + " text-5xl sm:text-6xl md:text-7xl text-center"
+          fugaz.className + " text-5xl sm:text-6xl md:text-7xl text-center"
         }
       >
         <span className="textGradient">Broodl</span> helps you track your{" "}

@@ -2,12 +2,12 @@ import { Fugaz_One } from "next/font/google";
 import React from "react";
 import Button from "./Button";
 
-const fugasOne = Fugaz_One({ subsets: ["latin"], weight: ["400"] });
+const fugaz = Fugaz_One({ subsets: ["latin"], weight: ["400"] });
 
 export default function Login() {
   return (
     <div className="flex flex-col flex-1 justify-center items-center gap-4">
-      <h3 className={fugasOne.className + " text-4xl sm:text-5xl md:text-6xl"}>
+      <h3 className={fugaz.className + " text-4xl sm:text-5xl md:text-6xl"}>
         Login / Register
       </h3>
       <p>You&apos;re one step away!</p>

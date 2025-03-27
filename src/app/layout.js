@@ -3,7 +3,7 @@ import "./globals.css";
 import Link from "next/link";
 
 const opensans = Open_Sans({ subsets: ["latin"] });
-const fugasOne = Fugaz_One({ subsets: ["latin"], weight: ["400"] });
+const fugaz = Fugaz_One({ subsets: ["latin"], weight: ["400"] });
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
     <header className="p-4 sm:p-8 flex items-center justify-between gap-4">
       <Link href={"/"}>
         <h1
-          className={fugasOne.className + " text-base sm:text-lg textGradient"}
+          className={fugaz.className + " text-base sm:text-lg textGradient"}
         >
           Broodl
         </h1>
@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
 
   const footer = (
     <footer className="p-4 sm:p-8 grid place-items-center">
-      <p className={fugasOne.className + " text-indigo-600"}>
+      <p className={fugaz.className + " text-indigo-600"}>
         Created with &hearts;
       </p>
     </footer>
