@@ -4,7 +4,7 @@ import React from "react";
 const fugaz = Fugaz_One({ subsets: ["latin"], weight: ["400"] });
 
 export default function Button(props) {
-  const { text, dark, full } = props;
+  const { text, dark, full, onClick } = props;
   return (
     <button
       className={
@@ -12,6 +12,7 @@ export default function Button(props) {
         (dark ? " text-white bg-indigo-600" : "text-indigo-600") +
         (full ? " grid place-items-center w-full" : "")
       }
+      onClick={onClick}
     >
       <p
         className={

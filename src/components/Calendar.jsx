@@ -1,5 +1,6 @@
-import { baseRating, demoData, gradients } from "@/utils";
-import React from "react";
+"use client";
+import { baseRating, gradients } from "@/utils";
+import React, { useState } from "react";
 
 const months = {
   January: "Jan",
@@ -28,19 +29,21 @@ const dayList = [
 ];
 
 export default function Calendar(props) {
-  const { demo } = props;
+  const { demo, completeData, handleSetMood } = props;
+  const [selectedMonth, setSelectedMonth] = useState(monthsArr[now.getMonth()]);
+  const [selectedYear, setSelectedYear] = useState(now.getFullYear());
 
-  const month = "March";
-  const year = 2025;
-  const monthNow = new Date(year, Object.keys(months).indexOf(month), 1);
-  const firstDayOfMonth = monthNow.getDay();
-  const daysInMonth = new Date(
-    year,
-    Object.keys(months).indexOf(month) + 1,
-    0
-  ).getDate();
+  const monthIndex = Object.keys(months).indexOf(selectedMonth);
+  const monthNum = monthIndex + 1;
+  // Get index of first day of month in a row of week (0 = Sunday)
+  const firstDayOfMonth = new Date(selectedYear, monthIndex, 1).getDay();
+  // Get total days in one month
+  const daysInMonth = new Date(selectedYear, monthNum, 0).getDate();
+
   const daysToDisplay = firstDayOfMonth + daysInMonth;
   const numRows = Math.floor(daysToDisplay / 7) + (daysToDisplay % 7 ? 1 : 0);
+
+  const data = completeData?.[selectedYear]?.[monthNum] || {};
 
   return (
     <div className="flex flex-col overflow-hidden gap-1 py-4 sm:py-6 md:py-10">
@@ -69,8 +72,8 @@ export default function Calendar(props) {
               let color;
               if (demo) {
                 color = gradients.indigo[baseRating[dayIndex]];
-              } else if (dayIndex in demoData) {
-                color = gradients.indigo[demoData[dayIndex]];
+              } else if (dayIndex in data) {
+                color = gradients.indigo[data[dayIndex]];
               } else {
                 color = "white";
               }
