@@ -1,5 +1,5 @@
 "use client";
-import { baseRating, gradients } from "@/utils";
+import { baseRating, gradients, moods } from "@/utils";
 import { Fugaz_One } from "next/font/google";
 import React, { useState } from "react";
 
@@ -71,7 +71,12 @@ export default function Calendar(props) {
         >
           <i className="fa-solid fa-circle-chevron-left" />
         </button>
-        <p className={fugaz.className + " text-center capitalize textGradient col-span-3 whitespace-nowrap"}>
+        <p
+          className={
+            fugaz.className +
+            " text-center capitalize textGradient col-span-3 whitespace-nowrap"
+          }
+        >
           {selectedMonth}
           {selectedYear !== now.getFullYear() && ` ${selectedYear}`}
         </p>
@@ -101,17 +106,24 @@ export default function Calendar(props) {
                   dayDisplay = true;
                 }
 
-                let isToday = dayIndex === now.getDate();
+                let isToday =
+                  dayIndex === now.getDate() &&
+                  selectedMonth === monthsArr[now.getMonth()];
 
                 if (!dayDisplay) {
                   return <div key={dayOfWeekIndex} className="bg-white"></div>;
                 }
 
                 let color;
+                let icon;
                 if (demo) {
                   color = gradients.indigo[baseRating[dayIndex]];
+                  icon =
+                    moods[Object.keys(moods)[baseRating[dayIndex] - 1]]
+                      .flatIcon;
                 } else if (dayIndex in data) {
                   color = gradients.indigo[data[dayIndex]];
+                  icon = moods[Object.keys(moods)[data[dayIndex] - 1]].flatIcon;
                 } else {
                   color = "white";
                 }
@@ -127,6 +139,7 @@ export default function Calendar(props) {
                     }
                   >
                     <p>{dayIndex}</p>
+                    {icon}
                   </div>
                 );
               })}

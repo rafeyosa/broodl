@@ -1,12 +1,16 @@
 "use client";
 import { Fugaz_One } from "next/font/google";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./Button";
 import { useAuth } from "@/context/AuthContext";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const fugaz = Fugaz_One({ subsets: ["latin"], weight: ["400"] });
 
 export default function Login() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRegister, setIsRegister] = useState(false);
@@ -55,6 +59,14 @@ export default function Login() {
     setEmail("");
     setPassword("");
   }
+
+  useEffect(() => {
+    const type = searchParams.get("type");
+    if (type) {
+      setIsRegister(type === "signup");
+      router.replace("/dashboard");
+    }
+  }, [searchParams]);
 
   return (
     <div className="flex flex-col flex-1 justify-center items-center gap-4">

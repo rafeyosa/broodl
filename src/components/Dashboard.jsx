@@ -7,6 +7,7 @@ import { doc, setDoc } from "firebase/firestore";
 import Login from "./Login";
 import Loading from "./Loading";
 import { db } from "../../firebase";
+import { moods } from "@/utils";
 
 const fugaz = Fugaz_One({ subsets: ["latin"], weight: ["400"] });
 
@@ -18,14 +19,6 @@ export default function Dashboard() {
   const statuses = {
     ...countMoods(),
     time_remaining: `${24 - now.getHours()}H ${60 - now.getMinutes()}M`,
-  };
-
-  const moods = {
-    "&*@#$": "😭",
-    Sad: "🥲",
-    Existing: "😶",
-    Good: "😊",
-    Elated: "😍",
   };
 
   function countMoods() {
@@ -101,7 +94,7 @@ export default function Dashboard() {
 
   return (
     <div className="flex flex-col felx-1 p-4 sm:p-8 gap-8 sm:gap-12 md:gap-16">
-      <div className="grid grid-cols-3 bg-indigo-50 text-indigo-500 rounded-lg p-4 gap-4 rounded-lg">
+      <div className="grid grid-cols-3 bg-indigo-50 text-indigo-500 rounded-lg p-4 gap-4">
         {Object.keys(statuses).map((status, statusIndex) => {
           return (
             <div key={statusIndex} className="p-4 flex flex-col gap-1 sm:gap-2">
@@ -109,7 +102,8 @@ export default function Dashboard() {
                 {status.replaceAll("_", " ")}
               </p>
               <p className={fugaz.className + " text-base sm:text-lg"}>
-                {statuses[status]}{status === 'num_days' ? ' \uD83D\uDD25' : ''}
+                {statuses[status]}
+                {status === "num_days" ? " \uD83D\uDD25" : ""}
               </p>
             </div>
           );
@@ -147,7 +141,9 @@ export default function Dashboard() {
               }
               onClick={() => handleSetMood(moodIndex + 1)}
             >
-              <p className="text-4xl sm:text-5xl md:text-6xl">{moods[mood]}</p>
+              <p className="text-4xl sm:text-5xl md:text-6xl">
+                {moods[mood].emoji}
+              </p>
               <p
                 className={
                   fugaz.className +

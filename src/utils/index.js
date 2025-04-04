@@ -115,3 +115,26 @@ export const demoData = {
   23: 3,
   24: 5,
 };
+
+export const moods = {
+  "&*@#$": {
+    emoji: "😭",
+    flatIcon: <i className="fa-solid fa-face-sad-cry" />,
+  },
+  Sad: {
+    emoji: "🥲",
+    flatIcon: <i className="fa-solid fa-face-sad-tear" />,
+  },
+  Existing: {
+    emoji: "😶",
+    flatIcon: <i className="fa-solid fa-face-meh-blank" />,
+  },
+  Good: {
+    emoji: "😊",
+    flatIcon: <i className="fa-solid fa-face-smile-beam" />,
+  },
+  Elated: {
+    emoji: "😍",
+    flatIcon: <i className="fa-solid fa-face-grin-hearts" />,
+  },
+};
