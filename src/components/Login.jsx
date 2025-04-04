@@ -11,17 +11,24 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [isRegister, setIsRegister] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const { signUp, login } = useAuth();
 
   async function handleSubmit() {
-    if (
-      !email ||
-      !email.includes("@") ||
-      !password ||
-      password.length < 6 ||
-      isAuthenticating
-    ) {
+    if (!email || !password) {
+      setErrorMessage("Email and password cannot be empty");
+      return;
+    }
+    if (!email.includes("@")) {
+      setErrorMessage("Email is not valid");
+      return;
+    }
+    if (password.length < 6) {
+      setErrorMessage("Password must be at least 6 characters long");
+      return;
+    }
+    if (isAuthenticating) {
       return;
     }
 
@@ -33,11 +40,20 @@ export default function Login() {
       } else {
         await login(email, password);
       }
+      clearForm();
     } catch (error) {
+      setErrorMessage(
+        isRegister ? "The user already exists" : "Invalid email or password"
+      );
       console.log(error.message);
     } finally {
       setIsAuthenticating(false);
     }
+  }
+
+  function clearForm() {
+    setEmail("");
+    setPassword("");
   }
 
   return (
@@ -51,15 +67,22 @@ export default function Login() {
         className="w-full max-w-[400px] mx-auto px-3 py-2 sm:py-3 border border-solid border-indigo-400 rounded outline-indigo-400 duration-200 hover:border-indigo-600"
         placeholder="Email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => {
+          setEmail(e.target.value);
+          setErrorMessage("");
+        }}
       />
       <input
         type="password"
         className="w-full max-w-[400px] mx-auto px-3 py-2 sm:py-3 border border-solid border-indigo-400 rounded outline-indigo-400 duration-200 hover:border-indigo-600"
         placeholder="Password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => {
+          setPassword(e.target.value);
+          setErrorMessage("");
+        }}
       />
+      {errorMessage && <p className="text-red-600">{errorMessage}</p>}
       <div className="max-w-[400px] w-full mx-auto">
         <Button
           text={isAuthenticating ? "Submitting..." : "Submit"}
@@ -71,7 +94,11 @@ export default function Login() {
         {isRegister ? "Already have an account? " : "Don't have an account? "}
         <button
           className="text-indigo-600"
-          onClick={() => setIsRegister(!isRegister)}
+          onClick={() => {
+            setIsRegister(!isRegister);
+            setErrorMessage("");
+            clearForm();
+          }}
         >
           {isRegister ? "Login" : "Sign up"}
         </button>
