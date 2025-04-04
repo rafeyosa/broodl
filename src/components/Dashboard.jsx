@@ -114,22 +114,6 @@ export default function Dashboard() {
       >
         How do you <span className="textGradient">feel</span> today?
       </h4>
-      {/* <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
-        {Object.keys(moods).map((mood, moodIndex) => {
-          return (
-            <button
-              key={moodIndex}
-              className={
-                "bg-indigo-50 hover:bg-indigo-100 rounded-2xl purpleShadow duration-200 p-4 text-center flex flex-col items-center gap-2 " +
-                (moodIndex === 4 ? "col-span-2 sm:col-span-1" : " ")
-              }
-            >
-              <p className="text-4xl sm:text-5xl md:text-6xl">{moods[mood]}</p>
-              <p className={fugaz.className + " text-indigo-500 text-xs sm:text-sm md:text-base"}>{mood}</p>
-            </button>
-          );
-        })}
-      </div> */}
       <div className="flex items-stretch flex-wrap gap-4">
         {Object.keys(moods).map((mood, moodIndex) => {
           return (
